@@ -15,13 +15,13 @@
           <img class="logo" role="presentation" draggable="false" src="~/assets/images/logo_grouped 2023.png" alt="Surrey CompSoc logo">
         </a>
         <div class="links">
-<!--          <nuxt-link to="/">Home</nuxt-link>-->
-<!--          <nuxt-link to="/committee">Committee</nuxt-link>-->
-<!--          <nuxt-link to="/events">Events</nuxt-link>-->
+          <nuxt-link to="/">Home</nuxt-link>
+          <nuxt-link to="/committee">Committee</nuxt-link>
+          <nuxt-link to="/events">Events</nuxt-link>
         </div>
       </nav>
 
-      <!-- Header text elements (only expanded) -->
+<!--       Header text elements (only expanded)-->
       <transition name="fade">
         <div v-if="expanded" class="header-text">
           <h2>Welcome to Surrey CompSoc!</h2>
@@ -50,8 +50,8 @@ export default Vue.extend({
 </script>
 
 <style lang='scss'>
-$headerHeight: 90px;
-$expandedHeaderHeight: 400px;
+$headerHeight: 125px;
+$expandedHeaderHeight: 500px;
 $arrowStart: 85%;
 $headerTransition: .2s ease-out;
 
@@ -68,6 +68,11 @@ header#appHeader {
   &:not(.expanded) {
     height: $headerHeight;
     background: linear-gradient(27.73deg, #8572D6 29.47%, #27D7A9 100%);
+    @media (prefers-color-scheme: dark) {
+      background: linear-gradient(to right, #2c2c2c, #000);
+
+
+    }
   }
 
   .presentation {
@@ -85,6 +90,12 @@ header#appHeader {
       height: $expandedHeaderHeight;
       z-index: -1;
       background: linear-gradient(27.73deg, #8572D6 29.47%, #27D7A9 100%);
+      @media (prefers-color-scheme: dark) {
+        background: linear-gradient(to right, #2c2c2c, #000);
+
+      }
+
+
       transition: height $headerTransition;
       clip-path: polygon(0 0, 100% 0, 100% $arrowStart, 50% 100%, 50% 100%, 0 $arrowStart);
     }
@@ -112,6 +123,11 @@ header#appHeader {
     justify-content: space-between;
     align-items: center;
 
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
     .logo {
       display: block;
       height: 50px;
@@ -124,6 +140,19 @@ header#appHeader {
       font-weight: bold;
       color: white;
       user-select: none !important;
+
+      @media (max-width: 768px) {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        width: 100%;
+        text-align: center;
+        align-content: center;
+        gap: 10px 10px;
+        margin-top: 20px;
+      }
 
       a {
         position: relative;
@@ -139,7 +168,6 @@ header#appHeader {
           width: 0;
           background: white;
           border-radius: 100px;
-
           transition: width $headerTransition;
         }
 
@@ -149,6 +177,7 @@ header#appHeader {
       }
     }
   }
+
 
   .header-text {
     position: absolute;
